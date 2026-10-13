@@ -3,19 +3,19 @@
         {
             "Name": "main",
             "Source": "https://github.com/ScoopInstaller/Main",
-            "Updated": "2026-10-13T09:14:20+08:00",
+            "Updated": "2026-10-13T12:42:39+08:00",
             "Manifests": 1679
         },
         {
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
-            "Updated": "2026-10-13T09:15:50+08:00",
+            "Updated": "2026-10-13T12:43:02+08:00",
             "Manifests": 2421
         },
         {
             "Name": "versions",
             "Source": "https://github.com/ScoopInstaller/Versions",
-            "Updated": "2026-10-13T10:09:19+08:00",
+            "Updated": "2026-10-13T13:11:18+08:00",
             "Manifests": 627
         },
         {

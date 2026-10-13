@@ -1,6 +1,9 @@
 [wsl2]
 networkingMode=Mirrored
 firewall=false
+memory=4294967296
 
 [experimental]
 sparseVhd=true
+[general]
+instanceIdleTimeout=-1

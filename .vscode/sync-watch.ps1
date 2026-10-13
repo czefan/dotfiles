@@ -14,8 +14,15 @@ if (-not (Test-Path $preCommitPath) -or (Get-Content $preCommitPath -Raw) -ne $p
     Set-Content -Path $preCommitPath -Value $preCommitScript -Encoding utf8 -NoNewline
 }
 
-# 2. 打开 VS Code 时，自动导出最新 Scoop 软件清单并将外部原文件改动拉回仓库
-scoop export | Out-File -FilePath "$HOME\.config\scoop\scoopfile.json" -Encoding utf8
+# 2. 打开 VS Code 时，自动导出最新 Scoop 软件清单（剥离 Updated 时间戳以消除 Git 噪音）并拉回外部改动
+if (Get-Command jq -ErrorAction SilentlyContinue) {
+    scoop export | jq 'walk(if type == "object" then del(.Updated) else . end)' | Out-File -FilePath "$HOME\.config\scoop\scoopfile.json" -Encoding utf8
+} else {
+    $export = scoop export | ConvertFrom-Json
+    $export.buckets.ForEach({ $_.PSObject.Properties.Remove('Updated') })
+    $export.apps.ForEach({ $_.PSObject.Properties.Remove('Updated') })
+    $export | ConvertTo-Json -Depth 5 | Out-File -FilePath "$HOME\.config\scoop\scoopfile.json" -Encoding utf8
+}
 chezmoi re-add
 
 # 检查拉回的改动中是否包含敏感凭证（如 npm login / scoop gh_token）

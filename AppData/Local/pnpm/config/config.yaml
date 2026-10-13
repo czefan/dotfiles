@@ -1,0 +1,8 @@
+cacheDir: D:\Scoop\apps\pnpm\current\cache
+globalShims:
+  npm: auto
+  bun: auto
+  node: auto
+  deno: auto
+stateDir: D:\Scoop\apps\pnpm\current\state
+storeDir: D:\Cache\Dev\pnpm-store

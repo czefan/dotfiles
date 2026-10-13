@@ -1,0 +1,14 @@
+[core]
+	editor = code --wait
+	pager = delta
+	quotepath = false
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	light = true
+[user]
+	name = czefan
+	email = 289913525+czefan@users.noreply.github.com
+[safe]
+	directory = *

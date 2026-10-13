@@ -1,0 +1,3 @@
+GOCACHE=D:\Cache\Dev\go-build
+GOPATH=D:\Cache\Dev\go
+GOPROXY=https://goproxy.cn,direct

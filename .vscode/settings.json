@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "dot_gitconfig": "ini",
+        "dot_wslconfig": "ini",
+        "dot_npmrc": "ini",
+        "dot_*rc": "shellscript",
+        "dot_*profile*": "shellscript",
+        "**/go/env": "ini",
+        "*.tmpl": "toml"
+    }
+}

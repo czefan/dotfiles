@@ -2,28 +2,23 @@
   "buckets": [
     {
       "Name": "main",
-      "Source": "https://github.com/ScoopInstaller/Main",
-      "Manifests": 1679
+      "Source": "https://github.com/ScoopInstaller/Main"
     },
     {
       "Name": "extras",
-      "Source": "https://github.com/ScoopInstaller/Extras",
-      "Manifests": 2421
+      "Source": "https://github.com/ScoopInstaller/Extras"
     },
     {
       "Name": "versions",
-      "Source": "https://github.com/ScoopInstaller/Versions",
-      "Manifests": 627
+      "Source": "https://github.com/ScoopInstaller/Versions"
     },
     {
       "Name": "nerd-fonts",
-      "Source": "https://github.com/matthewjberger/scoop-nerd-fonts",
-      "Manifests": 367
+      "Source": "https://github.com/matthewjberger/scoop-nerd-fonts"
     },
     {
       "Name": "java",
-      "Source": "https://github.com/ScoopInstaller/Java",
-      "Manifests": 338
+      "Source": "https://github.com/ScoopInstaller/Java"
     }
   ],
   "apps": [

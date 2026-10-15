@@ -33,15 +33,23 @@ foreach ($source in $cacheScripts.Values) {
 $env:PNPM_HOME = 'D:\Scoop\persist\pnpm'
 [Environment]::SetEnvironmentVariable('PNPM_HOME', $env:PNPM_HOME, 'User')
 $pnpmBin = "$env:PNPM_HOME\bin"
+$commandPaths = @($pnpmBin, 'D:\Cache\Dev\go\bin')
 $legacyBin = 'D:\Scoop\apps\pnpm\current\bin'
 $userPaths = [Environment]::GetEnvironmentVariable('Path', 'User') -split ';'
-$userPath = (@($pnpmBin) + @($userPaths | Where-Object { $_ -and $_.TrimEnd('\') -notin @($pnpmBin, $legacyBin) })) -join ';'
+$userPath = ($commandPaths + @($userPaths | Where-Object { $_ -and $_.TrimEnd('\') -notin ($commandPaths + $legacyBin) })) -join ';'
 [Environment]::SetEnvironmentVariable('Path', $userPath, 'User')
-$env:PATH = (@($pnpmBin) + @($env:PATH -split ';' | Where-Object { $_ -and $_.TrimEnd('\') -notin @($pnpmBin, $legacyBin) })) -join ';'
+$env:PATH = ($commandPaths + @($env:PATH -split ';' | Where-Object { $_ -and $_.TrimEnd('\') -notin ($commandPaths + $legacyBin) })) -join ';'
 & $pnpmExe config set storeDir 'D:\Cache\Dev\pnpm-store' --global
 if ($LASTEXITCODE -ne 0) { throw 'pnpm 缓存路径设置失败。' }
-[Environment]::SetEnvironmentVariable('UV_CACHE_DIR', 'D:\Cache\Dev\uv', 'User')
-$env:UV_CACHE_DIR = 'D:\Cache\Dev\uv'
+$dataPaths = @{
+    UV_CACHE_DIR = 'D:\Cache\Dev\uv'
+    DENO_DIR = 'D:\Cache\Dev\deno'
+    GRADLE_USER_HOME = 'D:\Cache\Dev\gradle'
+}
+foreach ($entry in $dataPaths.GetEnumerator()) {
+    [Environment]::SetEnvironmentVariable($entry.Key, $entry.Value, 'User')
+    [Environment]::SetEnvironmentVariable($entry.Key, $entry.Value, 'Process')
+}
 
 # 3. 使用独立临时文件替换缓存
 $pending = [ordered]@{}

@@ -13,10 +13,11 @@
             ],
             "isBackground": true,
             "runOptions": {
-                "runOn": "folderOpen"
+                "runOn": "folderOpen",
+                "instanceLimit": 1
             },
             "presentation": {
-                "reveal": "never",
+                "reveal": "silent",
                 "panel": "dedicated"
             },
             "problemMatcher": []

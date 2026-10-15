@@ -1,0 +1,20 @@
+{{- $raw := "" -}}
+{{- $config := dict -}}
+{{- $path := joinPath .chezmoi.destDir ".config/scoop/config.json" -}}
+{{- if stat $path -}}
+{{- $raw = include $path -}}
+{{- $config = $raw | mustFromJson -}}
+{{- end -}}
+{{- $desired := dict "global_path" "D:\\ScoopGlobal" "root_path" "D:\\Scoop" "scoop_repo" "https://github.com/ScoopInstaller/Scoop" "scoop_branch" "master" -}}
+{{- $changed := false -}}
+{{- range $key, $value := $desired -}}
+{{- if ne (get $config $key) $value -}}
+{{- $changed = true -}}
+{{- $_ := set $config $key $value -}}
+{{- end -}}
+{{- end -}}
+{{- if $changed -}}
+{{ $config | toPrettyJson }}
+{{- else -}}
+{{ $raw }}
+{{- end -}}

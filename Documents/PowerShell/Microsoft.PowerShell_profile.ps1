@@ -10,8 +10,8 @@ $env:https_proxy = 'http://127.0.0.1:7897'
 $env:all_proxy   = 'http://127.0.0.1:7897'
 
 # 加载 CLI 静态缓存 (Starship 提示符 & zoxide 目录记录)
-if (Test-Path -LiteralPath "$PSScriptRoot\starship_init.ps1") { . "$PSScriptRoot\starship_init.ps1" }
-if (Test-Path -LiteralPath "$PSScriptRoot\zoxide_init.ps1") {
+if ([IO.File]::Exists("$PSScriptRoot\starship_init.ps1")) { . "$PSScriptRoot\starship_init.ps1" }
+if ([IO.File]::Exists("$PSScriptRoot\zoxide_init.ps1")) {
     $global:__zoxide_hooked = 0
     . "$PSScriptRoot\zoxide_init.ps1"
 }
